@@ -1,6 +1,6 @@
-package repository;
+package com.repository;
 
-import domain.User;
+import com.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

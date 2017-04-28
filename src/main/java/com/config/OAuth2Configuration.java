@@ -1,6 +1,8 @@
-package config;
+package com.config;
 
-
+import com.security.Authorities;
+import com.security.CustomAuthenticationEntryPoint;
+import com.security.CustomLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
@@ -21,9 +23,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import security.Authorities;
-import security.CustomAuthenticationEntryPoint;
-import security.CustomLogoutSuccessHandler;
 
 import javax.sql.DataSource;
 
@@ -32,8 +31,9 @@ public class OAuth2Configuration {
 
     @Configuration
     @EnableResourceServer
-    @ComponentScan(basePackages = "security")
+    @ComponentScan(basePackages = "com.security")
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+
         @Autowired
         private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
@@ -54,14 +54,13 @@ public class OAuth2Configuration {
                     .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
                     .disable()
                     .headers()
-                    .frameOptions().disable().and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .frameOptions().disable();
+
+            http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     .authorizeRequests()
                     .antMatchers("/hello/").permitAll()
                     .antMatchers("/secure/**").authenticated();
-
         }
 
     }
@@ -108,7 +107,6 @@ public class OAuth2Configuration {
                     .secret(propertyResolver.getProperty(PROP_SECRET))
                     .accessTokenValiditySeconds(propertyResolver.getProperty(PROP_TOKEN_VALIDITY_SECONDS, Integer.class, 1800));
         }
-
 
         public void setEnvironment(Environment environment) {
             this.propertyResolver = new RelaxedPropertyResolver(environment, ENV_OAUTH);

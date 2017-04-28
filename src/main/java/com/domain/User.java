@@ -1,4 +1,4 @@
-package domain;
+package com.domain;
 
 import org.hibernate.validator.constraints.Email;
 

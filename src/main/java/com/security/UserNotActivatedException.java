@@ -1,4 +1,4 @@
-package security;
+package com.security;
 
 import org.springframework.security.core.AuthenticationException;
 

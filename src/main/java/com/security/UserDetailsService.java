@@ -1,7 +1,8 @@
-package security;
+package com.security;
 
-import domain.Authority;
-import domain.User;
+import com.repository.UserRepository;
+import com.domain.Authority;
+import com.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
