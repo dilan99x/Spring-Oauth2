@@ -1,5 +1,4 @@
-package com.repository;
-
+package com.config.repository;
 
 import com.domain.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;

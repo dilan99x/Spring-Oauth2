@@ -31,7 +31,7 @@ public class OAuth2Configuration {
 
     @Configuration
     @EnableResourceServer
-    @ComponentScan(basePackages = "com.security")
+    @ComponentScan(basePackages = "com.dilan.security.*")
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
         @Autowired
@@ -107,6 +107,7 @@ public class OAuth2Configuration {
                     .secret(propertyResolver.getProperty(PROP_SECRET))
                     .accessTokenValiditySeconds(propertyResolver.getProperty(PROP_TOKEN_VALIDITY_SECONDS, Integer.class, 1800));
         }
+
 
         public void setEnvironment(Environment environment) {
             this.propertyResolver = new RelaxedPropertyResolver(environment, ENV_OAUTH);

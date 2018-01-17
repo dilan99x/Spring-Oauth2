@@ -1,6 +1,6 @@
 package com.security;
 
-import com.repository.UserRepository;
+import com.config.repository.UserRepository;
 import com.domain.Authority;
 import com.domain.User;
 import org.slf4j.Logger;

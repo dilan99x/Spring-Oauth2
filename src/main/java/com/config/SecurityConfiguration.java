@@ -37,7 +37,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         web
                 .ignoring()
-                .antMatchers("/h2console/**")
                 .antMatchers("/api/register")
                 .antMatchers("/api/activate")
                 .antMatchers("/api/lostpassword")
